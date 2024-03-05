@@ -249,7 +249,7 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "Number of errors: " << nrOfErrors << std::endl;
 
-    std:getchar();
+    std::getchar();
     
     return 0;
 }
