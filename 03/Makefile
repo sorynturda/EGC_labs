@@ -6,7 +6,7 @@ DEP_FILES=$(CPP_FILES:.cpp=.d)
 %.o: %.cpp
 	g++ -c -MMD -o $@ $<
 
-main: $(OBJ_FILES)
+main1: $(OBJ_FILES)
 	g++ -o $@ $^
 
-all: main
+all: main1
