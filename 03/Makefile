@@ -1,12 +1,3 @@
-CPP_FILES=$(wildcard *.cpp)
-OBJ_FILES=$(CPP_FILES:.cpp=.o)
-DEP_FILES=$(CPP_FILES:.cpp=.d)
-
--include $(DEP_FILES)
-%.o: %.cpp
-	g++ -c -MMD -o $@ $<
-
-main1: $(OBJ_FILES)
-	g++ -o $@ $^
-
-all: main1
+main: main.cpp testMatrix.cpp vec2.h vec3.h vec4.h mat3.h 
+	g++ main.cpp vec3.cpp vec4.cpp vec2.cpp mat3.cpp testMatrix.cpp -o main
+all: main
