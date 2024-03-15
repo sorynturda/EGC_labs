@@ -13,7 +13,6 @@ mat3 mat3::operator *(float scalarValue) const {
     for (int i = 0; i < 9; i++)
         newMatrixData[i] = scalarValue * matrixData[i];
     return mat3(newMatrixData);
-
 }
 
 mat3 mat3::operator *(const mat3& srcMatrix) const {

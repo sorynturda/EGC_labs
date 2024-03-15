@@ -14,7 +14,7 @@ int main(int argc, const char * argv[]) {
     int nrOfErrors = 0;
     
     nrOfErrors += egc::testMat3Implementation();
-    // nrOfErrors += egc::testMat4Implementation();
+    nrOfErrors += egc::testMat4Implementation();
     
     std::cout << "Number of errors: " << nrOfErrors << std::endl;
 
