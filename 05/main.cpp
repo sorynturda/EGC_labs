@@ -15,12 +15,12 @@ using namespace egc;
 SDL_Renderer *windowRenderer;
 // define rectangle vertices
 
-vec3 P1(100, 100, 1), P2(400, 100, 1);
-vec3 P3(400, 200, 1), P4(100, 200, 1);
+vec3 P1(200, 200, 1), P2(500, 200, 1);
+vec3 P3(500, 300, 1), P4(200, 300, 1); // media la P1 si P3
 
 mat3 rotation_mat = mat3();
-mat3 translate_from_origin = egc::translate(250, 150);
-mat3 translate_to_origin = egc::translate(-250, -150);
+mat3 translate_from_origin = egc::translate(350, 250);
+mat3 translate_to_origin = egc::translate(-350, -250);
 mat3 scale_mat = mat3();
 
 
@@ -141,8 +141,12 @@ int main(int argc, char * argv[]) {
                     P3 = translate_from_origin * scale_mat * translate_to_origin * P3;
                     P4 = translate_from_origin * scale_mat * translate_to_origin * P4;
                     break;
-                case SDLK_r:
-                    
+                case SDLK_RIGHT:
+                    rotation_mat = egc::rotate(10.0f);
+                    P1 = translate_from_origin * rotation_mat * translate_to_origin * P1;
+                    P2 = translate_from_origin * rotation_mat * translate_to_origin * P2;
+                    P3 = translate_from_origin * rotation_mat * translate_to_origin * P3;
+                    P4 = translate_from_origin * rotation_mat * translate_to_origin * P4;                    
                     break;
                 case SDLK_DOWN:
                     scale_mat = egc::scale(0.5f, 0.5f);
@@ -150,6 +154,14 @@ int main(int argc, char * argv[]) {
                     P2 = translate_from_origin * scale_mat * translate_to_origin * P2;
                     P3 = translate_from_origin * scale_mat * translate_to_origin * P3;
                     P4 = translate_from_origin * scale_mat * translate_to_origin * P4;
+                    break;
+                case SDLK_LEFT:
+                    rotation_mat = egc::rotate(-10.0f);
+                    P1 = translate_from_origin * rotation_mat * translate_to_origin * P1;
+                    P2 = translate_from_origin * rotation_mat * translate_to_origin * P2;
+                    P3 = translate_from_origin * rotation_mat * translate_to_origin * P3;
+                    P4 = translate_from_origin * rotation_mat * translate_to_origin * P4;                    
+
                     break;
                 default:
                     break;
