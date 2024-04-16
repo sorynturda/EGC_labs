@@ -20,13 +20,12 @@ int getOctant(BresenhamLine line) {
         return 4;
     if ((m < 1) && (deltaX < 0) && (deltaY > 0)) //second octant
         return 5;
-    if ((m > 1) && (deltaX > 0) && (deltaY <= 0)) //second octant
+    if ((m > 1) && (deltaX < 0) && (deltaY > 0)) //second octant
         return 6;
-    if ((m > 1) && (deltaX > 0) && (deltaY <= 0)) //second octant
+    if ((m > 1) && (deltaX > 0) && (deltaY > 0)) //second octant
         return 7;
-    if ((m > 1) && (deltaX > 0) && (deltaY <= 0)) //second octant
+    if ((m < 1) && (deltaX > 0) && (deltaY > 0)) //second octant
         return 8;
-
     return 0;
 }
 
@@ -176,13 +175,85 @@ void BresenhamDraw(BresenhamLine line, SDL_Renderer* renderer) {
                 ++tmpCurrentY;
             }
         }
-        printf("4\n");
+        printf("5\n");
         break;
     case 6:
+        tmpStartX = tmpCurrentX = line.startX;
+        tmpEndX = line.endX;
+        tmpStartY = tmpCurrentY = line.startY;
+        tmpEndY = line.endY;
+
+        d = 2 * dx - dy;
+        inc1 = 2 * dx;
+        inc2 = 2 * (dx - dy);
+
+        while (tmpCurrentY < tmpEndY)
+        {
+            //Draw current point
+            SDL_RenderDrawPoint(renderer, tmpCurrentX, tmpCurrentY);
+            ++tmpCurrentY;
+
+            if (d < 0)
+                d += inc1;
+            else
+            {
+                d += inc2;
+                --tmpCurrentX;
+            }
+        }
+        printf("6\n");
         break;
     case 7:
+        tmpStartX = tmpCurrentX = line.startX;
+        tmpEndX = line.endX;
+        tmpStartY = tmpCurrentY = line.startY;
+        tmpEndY = line.endY;
+
+        d = 2 * dx - dy;
+        inc1 = 2 * dx;
+        inc2 = 2 * (dx - dy);
+
+        while (tmpCurrentX < tmpEndX)
+        {
+            //Draw current point
+            SDL_RenderDrawPoint(renderer, tmpCurrentX, tmpCurrentY);
+            ++tmpCurrentY;
+
+            if (d < 0)
+                d += inc1;
+            else
+            {
+                d += inc2;
+                ++tmpCurrentX;
+            }
+        }
+        printf("7\n");
         break;
     case 8:
+        tmpStartX = tmpCurrentX = line.startX;
+        tmpEndX = line.endX;
+        tmpStartY = tmpCurrentY = line.startY;
+        tmpEndY = line.endY;
+
+        d = 2 * dx - dy;
+        inc1 = 2 * dy;
+        inc2 = 2 * (dy - dx);
+
+        while (tmpCurrentX < tmpEndX)
+        {
+            //Draw current point
+            SDL_RenderDrawPoint(renderer, tmpCurrentX, tmpCurrentY);
+            ++tmpCurrentX;
+
+            if (d < 0)
+                d += inc1;
+            else
+            {
+                d += inc2;
+                ++tmpCurrentY;
+            }
+        }
+        printf("8\n");
         break;
 
     default:
