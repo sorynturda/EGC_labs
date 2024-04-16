@@ -16,9 +16,9 @@ int getOctant(BresenhamLine line) {
         return 2;
     if ((m > 1) && (deltaX < 0) && (deltaY <= 0)) //second octant
         return 3;
-    if ((m < 1) && (deltaX > 0) && (deltaY <= 0)) //second octant
+    if ((m < 1) && (deltaX < 0) && (deltaY <= 0)) //second octant
         return 4;
-    if ((m > 1) && (deltaX > 0) && (deltaY <= 0)) //second octant
+    if ((m < 1) && (deltaX < 0) && (deltaY > 0)) //second octant
         return 5;
     if ((m > 1) && (deltaX > 0) && (deltaY <= 0)) //second octant
         return 6;
@@ -127,8 +127,56 @@ void BresenhamDraw(BresenhamLine line, SDL_Renderer* renderer) {
         printf("3\n");
         break;
     case 4:
+        tmpStartX = tmpCurrentX = line.startX;
+        tmpEndX = line.endX;
+        tmpStartY = tmpCurrentY = line.startY;
+        tmpEndY = line.endY;
+
+        d = 2 * dx - dy;
+        inc1 = 2 * dy;
+        inc2 = 2 * (dy - dx);
+
+        while (tmpCurrentX > tmpEndX)
+        {
+            //Draw current point
+            SDL_RenderDrawPoint(renderer, tmpCurrentX, tmpCurrentY);
+            --tmpCurrentX;
+
+            if (d < 0)
+                d += inc1;
+            else
+            {
+                d += inc2;
+                --tmpCurrentY;
+            }
+        }
+        printf("4\n");
         break;
     case 5:
+        tmpStartX = tmpCurrentX = line.startX;
+        tmpEndX = line.endX;
+        tmpStartY = tmpCurrentY = line.startY;
+        tmpEndY = line.endY;
+
+        d = 2 * dx - dy;
+        inc1 = 2 * dy;
+        inc2 = 2 * (dy - dx);
+
+        while (tmpCurrentX > tmpEndX)
+        {
+            //Draw current point
+            SDL_RenderDrawPoint(renderer, tmpCurrentX, tmpCurrentY);
+            --tmpCurrentX;
+
+            if (d < 0)
+                d += inc1;
+            else
+            {
+                d += inc2;
+                ++tmpCurrentY;
+            }
+        }
+        printf("4\n");
         break;
     case 6:
         break;
